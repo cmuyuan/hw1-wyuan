@@ -96,7 +96,8 @@
     </dependency>
   </dependencies>
   <scm>
-  	<connection>scm:git:git@github.com:cmuyuan/hw1-wyuan.git</connection>
   	<developerConnection>scm:git:git@github.com:cmuyuan/hw1-wyuan.git</developerConnection>
+  	<connection>scm:git:git@github.com:cmuyuan/hw1-wyuan.git</connection>
+  	<tag>HEAD</tag>
   </scm>
 </project>
