@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+	 ***************************************************************
+	 * Licensed to the Apache Software Foundation (ASF) under one
+	 * or more contributor license agreements.  See the NOTICE file
+	 * distributed with this work for additional information
+	 * regarding copyright ownership.  The ASF licenses this file
+	 * to you under the Apache License, Version 2.0 (the
+	 * "License"); you may not use this file except in compliance
+	 * with the License.  You may obtain a copy of the License at
+         *
+	 *   http://www.apache.org/licenses/LICENSE-2.0
+	 * 
+	 * Unless required by applicable law or agreed to in writing,
+	 * software distributed under the License is distributed on an
+	 * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+	 * KIND, either express or implied.  See the License for the
+	 * specific language governing permissions and limitations
+	 * under the License.
+	 ***************************************************************
+   -->
+<typeSystemDescription xmlns="http://uima.apache.org/resourceSpecifier">
+	<name>hw1-wyuan-TypeSystem</name>
+	<description>Type System Definition for sample information processing task.</description>
+	<version>1.0</version>
+	<vendor>wyuan</vendor>
+  <types>
+		<typeDescription>
+      <name>hw1.wyuan.baseAnnotator</name>
+      <description>All other types then inherit from this base annotation type</description>
+      <supertypeName>uima.tcas.Annotation</supertypeName>
+      <features>
+        <featureDescription>
+          <name>source</name>
+          <description>keep track of where an annotation was originally made by</description>
+          <rangeTypeName>uima.cas.String</rangeTypeName>
+        </featureDescription>
+        <featureDescription>
+          <name>confidence</name>
+          <description>how confidence the annotation was</description>
+          <rangeTypeName>uima.cas.Float</rangeTypeName>
+        </featureDescription>
+      </features>
+    </typeDescription>
+    <typeDescription>
+      <name>hw1.wyuan.question</name>
+      <description>question from input</description>
+      <supertypeName>hw1.wyuan.baseAnnotator</supertypeName>
+    </typeDescription>
+    <typeDescription>
+      <name>hw1.wyuan.anwser</name>
+      <description>one anwser from input file</description>
+      <supertypeName>hw1.wyuan.baseAnnotator</supertypeName>
+      <features>
+        <featureDescription>
+          <name>correctness</name>
+          <description>whether the anwser is correct or not</description>
+          <rangeTypeName>uima.cas.Boolean</rangeTypeName>
+        </featureDescription>
+      </features>
+    </typeDescription>
+    <typeDescription>
+      <name>hw1.wyuan.tokenAnnotator</name>
+      <description>annotator for each token span in each question and answer</description>
+      <supertypeName>hw1.wyuan.baseAnnotator</supertypeName>
+      <features>
+        <featureDescription>
+          <name>token</name>
+          <description>a token extracted from question or answer</description>
+          <rangeTypeName>uima.cas.String</rangeTypeName>
+        </featureDescription>
+      </features>
+    </typeDescription>
+    <typeDescription>
+      <name>hw1.wyuan.NGramAnnotator</name>
+      <description>annotate 1-, 2- and 3-grams of consecutive tokens.</description>
+      <supertypeName>hw1.wyuan.baseAnnotator</supertypeName>
+      <features>
+        <featureDescription>
+          <name>n</name>
+          <description>specify the number of grams</description>
+          <rangeTypeName>uima.cas.Integer</rangeTypeName>
+        </featureDescription>
+        <featureDescription>
+          <name>tokens</name>
+          <description>consecutive tokens to be annotated</description>
+          <rangeTypeName>uima.cas.FSArray</rangeTypeName>
+          <elementType>hw1.wyuan.tokenAnnotator</elementType>
+          <multipleReferencesAllowed>true</multipleReferencesAllowed>
+        </featureDescription>
+      </features>
+    </typeDescription>
+    <typeDescription>
+      <name>hw1.wyuan.anwserScoreAnnotator</name>
+      <description>assign and record an answer score to each answer.</description>
+      <supertypeName>hw1.wyuan.anwser</supertypeName>
+      <features>
+        <featureDescription>
+          <name>score</name>
+          <description>score of each anwser</description>
+          <rangeTypeName>uima.cas.Float</rangeTypeName>
+        </featureDescription>
+      </features>
+    </typeDescription>
+  <typeDescription>
+      <name>hw1.wyuan.QaAnnotator</name>
+      <description>annotate input file and extract question and answers</description>
+      <supertypeName>hw1.wyuan.baseAnnotator</supertypeName>
+      <features>
+        <featureDescription>
+          <name>question</name>
+          <description>text of question, extracted from input file</description>
+          <rangeTypeName>uima.cas.String</rangeTypeName>
+        </featureDescription>
+        <featureDescription>
+          <name>answers</name>
+          <description>array list of answers extracted from input file</description>
+          <rangeTypeName>uima.cas.StringList</rangeTypeName>
+        </featureDescription>
+      </features>
+    </typeDescription>
+  </types>
+</typeSystemDescription>
